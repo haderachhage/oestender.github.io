@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="GzSv7bpZZf8ctbKx5TxJkS9UvRxxMVoJxj9prcOQu4E" />
+
+  <!-- HTML Meta Tags -->
+  <title>SHAYNE HAGE</title>
+  <meta name="description" content="ARTIST. IMAGE + AUDIO + DESIGN. BASED IN YVR + OSL." />
+
+  <!-- Facebook / Open Graph Meta Tags -->
+  <meta property="og:url" content="https://haderachhage.github.io/nav" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SHAYNE HAGE" />
+  <meta property="og:description" content="ARTIST. IMAGE + AUDIO + DESIGN. BASED IN YVR + OSL." />
+  <meta property="og:image" content="https://i.ibb.co/3ydKnQPP/upscaled-8k-with-flaw-ULTRA-SHARP-8-K.png" />
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content="haderachhage.github.io" />
+  <meta property="twitter:url" content="https://haderachhage.github.io" />
+  <meta name="twitter:title" content="SHAYNE HAGE" />
+  <meta name="twitter:description" content="ARTIST. IMAGE + AUDIO + DESIGN. BASED IN YVR + OSL." />
+  <meta name="twitter:image" content="https://i.ibb.co/3ydKnQPP/upscaled-8k-with-flaw-ULTRA-SHARP-8-K.png" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" href="/favicon.ico">
+</head>
+
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    :root{
+      --ink:#111;
+      --muted:#71797e;
+      --silver:#7a8288;
+      --line:#d7d7d7;
+      --soft:#f5f5f5;
+
+      --glitch:#000;
+      --glitch-blend:multiply;
+
+      --max:9000px;
+
+      /* CHANGED: bigger left spacer pushes the entire content column right */
+      --offset-left-spacer:280px; /* was 160px — increase more to push further right */
+      --offset-right-spacer:80px;
+
+      --pad-x:2rem;
+      --pad-y:4rem;
+
+      --plate-v:0.2em;
+      --yvr-plate-v:0.26em;
+      --yvr-extra-right:0.02em;
+      --left-plate-v:0.2em;
+
+      color-scheme: light;
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --ink:#fff;
+        --muted:#fff;
+        --silver:#fff;
+        --line:#fff;
+        --soft:#000;
+
+        --glitch:#fff;
+        --glitch-blend:screen;
+
+        color-scheme: dark;
+      }
+    }
+
+    html,body{
+      font-family:"EB Garamond", serif;
+      background:var(--soft);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    /* =====================================================
+       ✅ HIDE BROWSER SCROLLBAR (KEEP SCROLL)
+       ✅ SMOOTH MOMENTUM SCROLLING
+       (ADDED ONLY)
+       ===================================================== */
+    html, body{
+      scrollbar-width: none;        /* Firefox */
+      -ms-overflow-style: none;     /* IE/old Edge */
+      scroll-behavior: smooth;      /* smooth scroll for anchor jumps */
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar{
+      display: none;                /* Chrome/Safari/Opera */
+      width: 0;
+      height: 0;
+    }
+    body{
+      -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+    }
+
+    /* If a section ever becomes its own scroll container, keep it momentum + scrollbarless */
+    #buyPanel,
+    .c-glitch{
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    #buyPanel::-webkit-scrollbar,
+    .c-glitch::-webkit-scrollbar{
+      display:none;
+      width:0;
+      height:0;
+    }
+
+    .c-wrapper{position:relative;min-height:100vh}
+    .stage{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:flex-start;
+      padding:var(--pad-y) var(--pad-x);
+    }
+    .spacer-left{width:var(--offset-left-spacer);flex:0 0 auto}
+    .spacer-right{width:var(--offset-right-spacer);flex:0 0 auto}
+    .content{width:min(var(--max),100%)}
+
+    .left-rail{
+      position:absolute;
+      left:var(--pad-x);
+      top:var(--pad-y);
+      height:calc(100vh - (var(--pad-y) * 2));
+      display:grid;
+      grid-template-columns:auto auto;
+      column-gap:2.25rem;
+      align-items:stretch;
+      pointer-events:none;
+      user-select:none;
+      text-transform:uppercase;
+      z-index:1;
+    }
+    .rail-col{height:100%;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start}
+    .rail-row{
+      font-size:clamp(72px, 7.2vw, 160px);
+      font-weight:500;
+      transform:scaleY(2.25);
+      transform-origin:left center;
+      letter-spacing:-0.11em;
+      line-height:0.70;
+      color:var(--silver);
+      white-space:nowrap;
+      position:relative;
+      z-index:1;
+    }
+    .rail-plus{transform:scaleY(2.35);letter-spacing:-0.16em}
+    .rail-code{letter-spacing:-0.06em}
+
+    .left-rail .rail-col:first-child .rail-row{
+      color: #0302E7;
+    }
+
+    .rail-row.left-plate{ z-index:2; }
+    .rail-row.left-plate::before{
+      content:"";
+      position:absolute;
+      top:calc(-1 * var(--left-plate-v));
+      bottom:calc(-1 * var(--left-plate-v));
+      left:0;
+      right:0;
+      background:var(--soft);
+      z-index:-1;
+    }
+
+    .rail-row.rail-code.plate{
+      width:max-content;
+      color:var(--ink);
+      z-index:2;
+    }
+    .rail-row.rail-code.plate::before{
+      content:"";
+      position:absolute;
+      top:calc(-1 * var(--plate-v));
+      bottom:calc(-1 * var(--plate-v));
+      left:0;
+      right:0;
+      background:var(--soft);
+      z-index:-1;
+    }
+    .rail-row.rail-code.plate.yvr::before{
+      top:calc(-1 * var(--yvr-plate-v));
+      bottom:calc(-1 * var(--yvr-plate-v));
+      right:calc(0px - var(--yvr-extra-right));
+    }
+
+    .rail-row.ne-under{ z-index:1; }
+
+    .rail-row.hage-plate{
+      width:max-content;
+      z-index:3;
+    }
+    .rail-row.hage-plate::before{
+      content:"";
+      position:absolute;
+      top:calc(-1 * var(--plate-v));
+      bottom:calc(-1 * var(--plate-v));
+      left:0;
+      right:0;
+      background:var(--soft);
+      z-index:-1;
+    }
+
+    .right-rail{
+      position:absolute;
+      right:var(--pad-x);
+      top:var(--pad-y);
+      height:calc(100vh - (var(--pad-y) * 2));
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      align-items:flex-end;
+      user-select:none;
+      text-transform:uppercase;
+      z-index:1;
+    }
+    .right-rail a,
+    .right-rail span{
+      font-size:clamp(54px, 5.2vw, 130px);
+      font-weight:500;
+      transform:scaleY(2.25);
+      transform-origin:right center;
+      letter-spacing:-0.10em;
+      line-height:0.70;
+      white-space:nowrap;
+      text-decoration:none;
+      color:var(--ink);
+    }
+    .right-rail .plus{
+      transform:scaleY(2.35);
+      letter-spacing:-0.16em;
+      opacity:.95;
+      pointer-events:none;
+    }
+    .right-rail a:hover{ text-decoration: underline; }
+
+    .hero{
+      max-width:900px;
+      text-align:center;
+      padding:1.5rem;
+    }
+    .hero-media{
+      width:100%;
+      height:auto;
+      border:1px solid var(--line);
+      margin-bottom:1.2rem;
+      display:block;
+      background:var(--soft);
+    }
+
+    .hero-top{
+      display:flex;
+      justify-content:center;
+      align-items:stretch;
+      gap:50px;
+    }
+    .hero-top .hero-media{
+      width:min(850px, 1500%);
+      margin-bottom:1.2rem;
+      align-self:flex-start;
+    }
+
+    .adj-rail{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      align-items:flex-start;
+      align-self:stretch;
+      height:auto;
+      padding-top:2px;
+      text-transform:uppercase;
+      user-select:none;
+    }
+    .adj-link{
+      font-size:clamp(72px, 7.2vw, 16px);
+      font-weight:500;
+      transform:scaleY(2.25);
+      transform-origin:left center;
+      letter-spacing:-0.11em;
+      line-height:0.70;
+      color:var(--link);
+      white-space:nowrap;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .adj-link:hover{ text-decoration: underline; }
+
+    /* =====================================================
+       ✅ LIVE / BUY / WORK: slight transparency on hover
+       (ADDED ONLY)
+       ===================================================== */
+    .adj-link{
+      transition: opacity 220ms ease;
+    }
+    .adj-link:hover{
+      opacity: 0.78;
+    }
+
+     
+    }
+
+    @media (max-width: 1120px){
+      .hero-top .hero-media{ width:min(660px, 100%); }
+      .adj-link{ font-size:clamp(54px, 6.0vw, 130px); }
+    }
+
+    .inline-wrapper{
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      margin-bottom:1.4rem;
+      font-size:1.4rem;
+      font-weight:500;
+      color:var(--muted);
+      flex-wrap:wrap;
+    }
+    .inline-wrapper a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:inherit;
+      border-bottom:1px solid transparent;
+    }
+    .inline-wrapper a:hover{border-bottom-color:var(--muted)}
+
+    .hero h1{
+      font-size:2rem;
+      font-weight:500;
+      color:var(--muted);
+      margin-top:20px;
+      margin-bottom:.6rem;
+      letter-spacing:.2px;
+    }
+    .hero h1 a{color:var(--muted);text-decoration:none}
+    .hero h1 a:hover{text-decoration:underline}
+    .hero p{
+      color:var(--muted);
+      font-size:1.02rem;
+      line-height:1.6;
+      margin-top:.35rem;
+    }
+
+    .c-glitch{
+      background:var(--soft);
+      height:140px;
+      overflow:hidden;
+      position:relative;
+
+      margin-top:35px;
+    }
+    .glitch-word{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      font-size:clamp(36px, 4.2vw, 66px);
+      letter-spacing:-0.08em;
+      text-transform:uppercase;
+      color:var(--glitch);
+      user-select:none;
+    }
+    
+    .glitch-word::before,
+    .glitch-word::after{
+      content:attr(data-text);
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      opacity:.85;
+      color:var(--glitch);
+      mix-blend-mode:var(--glitch-blend);
+    }
+    .glitch-word::before{transform:translate(2px,0);clip-path:inset(10% 0 65% 0);animation:gl1 2.6s infinite linear}
+    .glitch-word::after{transform:translate(-2px,0);clip-path:inset(55% 0 12% 0);animation:gl2 2.1s infinite linear}
+
+    .glitch-word{
+  transform: translateX(-250px); /* more negative = further left */
+}
+
+    @keyframes gl1{
+      0%{clip-path:inset(10% 0 65% 0)}
+      25%{clip-path:inset(30% 0 45% 0)}
+      50%{clip-path:inset(12% 0 70% 0)}
+      75%{clip-path:inset(40% 0 35% 0)}
+      100%{clip-path:inset(10% 0 65% 0)}
+    }
+    @keyframes gl2{
+      0%{clip-path:inset(55% 0 12% 0)}
+      30%{clip-path:inset(65% 0 8% 0)}
+      60%{clip-path:inset(48% 0 20% 0)}
+      100%{clip-path:inset(55% 0 12% 0)}
+    }
+
+    #buyPanel{
+      position:fixed;
+      top:0;
+      bottom:0;
+      left:0;
+      width:0;
+      display:none;
+      background:var(--soft);
+      border-left:1px solid var(--line);
+      border-right:1px solid var(--line);
+      z-index:0;
+    }
+    #buyPanel.is-open{ display:block; }
+
+    #buyFrame{
+      width:100%;
+      height:100%;
+      border:0;
+      background:var(--soft);
+      display:block;
+    }
+
+    #buyClose{
+      position:absolute;
+      top:10px;
+      right:14px;
+      font-family:"EB Garamond", serif;
+      font-size:34px;
+      line-height:1;
+      border:0;
+      background:transparent;
+      color:var(--ink);
+      cursor:pointer;
+      z-index:2;
+    }
+
+    .mobile-min{display:none;text-align:center;padding:1.5rem}
+    .mobile-min img{
+      width:100%;
+      height:auto;
+      border:1px solid var(--line);
+      background:var(--soft);
+      display:block;
+      margin:0 auto 6.1rem;
+    }
+
+    .mobile-links{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+      text-transform:uppercase;
+      margin-bottom:6.1rem;
+    }
+    .mobile-links a{
+      font-family:"EB Garamond", serif;
+      font-size:clamp(60px, 5.5vw, 30px);
+      font-weight:500;
+      letter-spacing:-0.10m;
+      line-height:0.70;
+      color:var(--ink);
+      text-decoration:none;
+      transform:scaleY(2.1);
+      transform-origin:center;
+    }
+    .mobile-links a:active{ text-decoration:underline; }
+    .mobile-links .sep{
+      font-family:"EB Garamond", serif;
+      font-size:clamp(12px, 5.5vw, 30px);
+      font-weight:500;
+      letter-spacing:-0.10em;
+      line-height:0.70;
+      transform:scaleY(2.25);
+      user-select:none;
+      color:var(--ink);
+    }
+
+    .mobile-ig a{
+      color:var(--muted);
+      text-decoration:underline;
+      font-size:1.02rem;
+      line-height:1.4;
+      word-break:break-word;
+    }
+
+    @media (max-width: 980px){
+      .left-rail, .right-rail{display:none}
+      .stage{
+        justify-content:center;
+        padding:1.5rem 1.25rem;
+      }
+      .spacer-left, .spacer-right{display:none}
+
+      .hero, .c-glitch{display:none}
+
+      .mobile-min{display:block}
+      .content{width:min(var(--max),100%)}
+
+      #buyPanel{ display:none !important; }
+    }
+  
+  /* ============================
+     CUSTOM CURSORS (Tumi's Metallic Link 3D)
+     IMPORTANT: The originals are .ani (animated) and won’t show in Opera/Chrome.
+     So we use the PNG previews (static), which DO work in Chromium browsers.
+     Source set: https://www.rw-designer.com/cursor-set/tumi-s-metallic-link-3d-complete
+     ============================ */
+
+  :root{
+    /* PNG preview assets from rw-designer */
+    --cur-normal-img:   url("https://www.rw-designer.com/cursor-view/230912.png");
+    --cur-link-img:     url("https://www.rw-designer.com/cursor-view/230909.png");
+    --cur-text-img:     url("https://www.rw-designer.com/cursor-view/230914.png");
+    --cur-move-img:     url("https://www.rw-designer.com/cursor-view/230910.png");
+    --cur-no-img:       url("https://www.rw-designer.com/cursor-view/230915.png");
+    --cur-precision-img:url("https://www.rw-designer.com/cursor-view/230913.png");
+    --cur-help-img:     url("https://www.rw-designer.com/cursor-view/230907.png");
+    --cur-working-img:  url("https://www.rw-designer.com/cursor-view/230917.png");
+    --cur-busy-img:     url("https://www.rw-designer.com/cursor-view/230903.png");
+
+    --cur-resize-ns-img:url("https://www.rw-designer.com/cursor-view/230916.png");
+    --cur-resize-ew-img:url("https://www.rw-designer.com/cursor-view/230908.png");
+    --cur-resize-nwse-img:url("https://www.rw-designer.com/cursor-view/230905.png");
+    --cur-resize-nesw-img:url("https://www.rw-designer.com/cursor-view/230906.png");
+
+    --cur-alt-img:      url("https://www.rw-designer.com/cursor-view/230901.png");
+  }
+
+  /* Default everywhere (hotspot 0 0) */
+  html, body{ cursor: var(--cur-normal-img) 0 0, auto; }
+
+  /* ADDED ONLY: disable CSS smooth scroll on mobile */
+html, body { scroll-behavior: auto !important; }
+
+
+  /* Clickables */
+  a, button, [role="button"], summary,
+  .lightbox-arrow, .card img, .left-col a, .right-rail a, .center-col a{
+    cursor: var(--cur-link-img) 0 0, pointer;
+  }
+
+  /* Text/editing */
+  input, textarea, select, [contenteditable="true"]{
+    cursor: var(--cur-text-img) 0 0, text;
+  }
+
+  /* Disabled / unavailable */
+  :disabled, [aria-disabled="true"], .is-disabled{
+    cursor: var(--cur-no-img) 0 0, not-allowed !important;
+  }
+
+  /* Optional utility classes (use if you ever need them) */
+  .cursor-move{ cursor: var(--cur-move-img) 0 0, move !important; }
+  .cursor-precision{ cursor: var(--cur-precision-img) 0 0, crosshair !important; }
+  .cursor-help{ cursor: var(--cur-help-img) 0 0, help !important; }
+  .cursor-working{ cursor: var(--cur-working-img) 0 0, progress !important; }
+  .cursor-busy{ cursor: var(--cur-busy-img) 0 0, wait !important; }
+  .cursor-resize-ns{ cursor: var(--cur-resize-ns-img) 0 0, ns-resize !important; }
+  .cursor-resize-ew{ cursor: var(--cur-resize-ew-img) 0 0, ew-resize !important; }
+  .cursor-resize-nwse{ cursor: var(--cur-resize-nwse-img) 0 0, nwse-resize !important; }
+  .cursor-resize-nesw{ cursor: var(--cur-resize-nesw-img) 0 0, nesw-resize !important; }
+
+  /* Lightbox overlay: alternate select cursor */
+  .lightbox{ cursor: var(--cur-alt-img) 0 0, auto; }
+  .lightbox img{ cursor: var(--cur-alt-img) 0 0, auto; }
+
+
+
+  /* =====================================================
+     ✅ DVD GUY POPUP (click to dismiss)
+     Added only.
+     ===================================================== */
+  #dvdGuyWrap{
+    position:fixed;
+    left:0;
+    top:0;
+    width:160px;
+    height:auto;
+    z-index:99999;
+    display:none;
+    pointer-events:none; /* only the image is clickable */
+    will-change: transform;
+  }
+  #dvdGuy{
+    width:100%;
+    height:auto;
+    display:block;
+    pointer-events:auto;
+    cursor:pointer;
+    user-select:none;
+    -webkit-user-drag:none;
+  }
+  @media (max-width: 980px){
+    /* ensure it never runs / shows on mobile layout */
+    #dvdGuyWrap{ display:none !important; }
+  }
+
+</style>
+</head>
+
+<body>
+  <div class="c-wrapper">
+
+    <div class="left-rail" aria-hidden="true">
+      <div class="rail-col">
+        <div class="rail-row left-plate">SH</div>
+        <div class="rail-row left-plate">AY</div>
+        <div class="rail-row rail-plus left-plate">+</div>
+        <div class="rail-row ne-under">NE</div>
+        <div class="rail-row hage-plate">HAGE</div>
+      </div>
+      <div class="rail-col">
+        <div class="rail-row rail-code plate yvr">YVR</div>
+        <div class="rail-row rail-code plate">OSL</div>
+      </div>
+    </div>
+
+    <div class="right-rail" aria-label="Primary sections">
+      <a href="/dsn">DSN</a>
+      <span class="plus">+</span>
+      <a href="/aud">AUD</a>
+      <span class="plus">+</span>
+      <a href="/img">img</a>
+    </div>
+
+    <div id="buyPanel" aria-hidden="true">
+      <button id="buyClose" type="button" aria-label="Close">×</button>
+      <iframe id="buyFrame" title="BUY landing page" loading="lazy"></iframe>
+    </div>
+
+    <main class="stage">
+      <div class="spacer-left" aria-hidden="true"></div>
+
+      <section class="content">
+        <section class="hero" aria-label="Homepage hero">
+
+          <div class="hero-top">
+            <img
+              id="heroImg"
+              src="https://i.ibb.co/9H8zvmS8/The-Pearlwithcoin2.png"
+              class="hero-media"
+              alt="Hero image"
+            />
+
+            <nav class="adj-rail" aria-label="Adjacent links">
+              <a class="adj-link" href="#"></a>
+              <a class="adj-link" href="/live">LIVE</a>
+              <a class="adj-link" href="/buy" id="">BUY</a>
+              <a class="adj-link" href="/">WORK</a>
+              <a class="adj-link" href="#"></a>
+            </nav>
+          </div>
+
+          <div class="inline-wrapper" aria-label="Sections">
+            <a href="https://www.instagram.com/cash_wag/"> </a>
+            <a href="https://www.instagram.com/musclebeach_________mafiaboss/"></a>
+            <a href="SOUND.html"></a>
+          </div>
+
+          <p><span style="color: rgba(0, 0, 0, 0.0);">transparent text</span></p>
+          <p><span style="color: rgba(0, 0, 0, 0.0);">transparent text</span></p>
+
+<h1>
+  <a href="https://www.instagram.com/______haderachhage/"
+   target="_blank"
+   rel="noreferrer"
+   class="ig-link"
+   style="color:var(--ink); animation:fadePulse .2s ease-in-out infinite;">
+  <span class="ig-spacer">instagram+instagraminstagrainstagram</span>
+  <span class="ig-handle" style="color:var(--link);">
+    @______haderachhage
+  </span>
+</a>
+ <a href="mailto:vulamguntilion@gmail.com"
+   target="_blank"
+   rel="noreferrer"
+   class="ig-link"
+   style="color:var(--ink); animation:fadePulse 1.2s ease-in-out infinite;">
+  <span class="ig-spacer">instagram+instagraminstagrainstagram</span>
+  <span class="ig-handle" style="color:var(--link);">
+    kontakt shayne
+  </span>
+</a>
+
+<style>
+@keyframes fadePulse{
+  0%   { opacity: 1; }
+  50%  { opacity: 0.35; }
+  100% { opacity: 1; }
+}
+</style>
+
+
+</h1>
+
+<style>
+  .ig-link,
+  .ig-link:hover,
+  .ig-link:focus,
+  .ig-link:active,
+  .ig-link:visited {
+    text-decoration: none !important;
+  }
+
+  .ig-spacer {
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .ig-handle {
+    display: inline;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .ig-handle:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+</style>
+
+
+<p id="work" style="color:#FF89BB; font-weight:700; letter-spacing:0.08em;">
+  <span class="ghost">
+    A Clean Capsule Index For Sound + Design + Imageee
+  </span>
+  DESIGNED WITH LOVE @
+  
+    MUSCLE BEACH.
+  </a>
+</p>
+
+
+<style>
+  #work .ghost {
+    visibility: hidden;
+  }
+
+  #work a {
+    color: inherit;
+    text-decoration: underline;
+  }
+</style>
+
+</section>
+
+        <div class="c-glitch" aria-hidden="true">
+          <div class="glitch-word" data-text="IR0N+B0NE+CASHWAG+CASHWAG">IR0N+B0NE_CASHWAG_C4</div>
+        </div>
+
+        <section class="mobile-min" aria-label="Mobile minimal">
+          <img
+            id="mobileHeroImg"
+            src="https://i.ibb.co/9H8zvmS8/The-Pearlwithcoin2.png"
+            alt="Main"
+          />
+
+          <nav class="mobile-links" aria-label="Mobile sections">
+            <a href="/img">IMG</a>
+            <span class="sep"></span>
+            <a href="https://www.instagram.com/______haderachhage" style="color:#0302E7" rel="noreferrer">INSTA</a>
+            <span class="sep"></span>
+            <a href="/img">AUD</a>
+          
+          </nav>
+
+          <nav class="mobile-links" aria-label="Mobile sections">
+            
+            <a href="/aud"></a>
+          </nav>
+
+          <nav class="mobile-links" aria-label="Mobile sections">
+            <a href="/live" style="color:#FF89BB;"></a>
+            <span class="sep"></span>
+            <a href="/buy" style="color:#FF89BB;"></a>
+            
+          
+          </nav>
+
+          <nav class="mobile-links" aria-label="Mobile sections">
+            <a href="/img"></a>
+            <span class="sep"></span>
+            <a href="https://www.instagram.com/______haderachhage" target="" rel="noreferrer"></a>
+            <span class="sep"></span>
+            <a href="/aud"></a>
+          </nav>
+
+          <div class="mobile-ig">
+            <a href="https://www.instagram.com/______haderachhage" target="_blank" rel="noreferrer">
+              
+            </a>
+          </div>
+        </section>
+
+      </section>
+
+      <div class="spacer-right" aria-hidden="true"></div>
+    </main>
+  </div>
+
+  <script>
+    const LIGHT_HERO = "https://i.ibb.co/ccy2cqYD/image-3.png";
+    const DARK_HERO  = "https://i.ibb.co/9H8zvmS8/The-Pearlwithcoin2.png";
+
+    const heroImg = document.getElementById("heroImg");
+    const mobileHeroImg = document.getElementById("mobileHeroImg");
+    const mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function applyHero(){
+      const src = mq.matches ? DARK_HERO : LIGHT_HERO;
+      if (heroImg) heroImg.src = src;
+      if (mobileHeroImg) mobileHeroImg.src = src;
+    }
+
+    applyHero();
+    mq.addEventListener?.("change", applyHero);
+  </script>
+
+  <script>
+    (function(){
+      const buyLink  = document.getElementById("buyLink");
+      const panel    = document.getElementById("buyPanel");
+      const frame    = document.getElementById("buyFrame");
+      const closeBtn = document.getElementById("buyClose");
+
+      function isDesktop(){
+        return window.matchMedia("(min-width: 981px)").matches;
+      }
+
+      function layoutPanel(){
+        if (!panel.classList.contains("is-open")) return;
+
+        const adj = document.querySelector(".adj-rail");
+        const rr  = document.querySelector(".right-rail");
+        if (!adj || !rr) return;
+
+        const a = adj.getBoundingClientRect();
+        const r = rr.getBoundingClientRect();
+
+        const gutter = 18;
+
+        const left  = Math.round(a.right + gutter);
+        const right = Math.round(r.left  - gutter);
+        const width = Math.max(0, right - left);
+
+        panel.style.left  = left + "px";
+        panel.style.width = width + "px";
+      }
+
+      function openPanel(url){
+        if (!isDesktop()) return;
+        panel.classList.add("is-open");
+        panel.setAttribute("aria-hidden", "false");
+        frame.src = url;
+        layoutPanel();
+      }
+
+      function closePanel(){
+        panel.classList.remove("is-open");
+        panel.setAttribute("aria-hidden", "true");
+        frame.removeAttribute("src");
+        panel.style.width = "0";
+      }
+
+      if (buyLink){
+        buyLink.addEventListener("click", (e) => {
+          if (!isDesktop()) return;
+          e.preventDefault();
+
+          const url = buyLink.getAttribute("href") || "/#";
+
+          if (panel.classList.contains("is-open")) closePanel();
+          else openPanel(url);
+        });
+      }
+
+      closeBtn?.addEventListener("click", closePanel);
+
+      window.addEventListener("resize", layoutPanel);
+      window.addEventListener("scroll", layoutPanel, { passive:true });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && panel.classList.contains("is-open")) closePanel();
+      });
+    })();
+  </script>
+
+  <script type='text/javascript' src='https://amniote.net/wp-content/themes/amniote/dist/bundle.js?ver=1.0.30' id='amniotescripts-js'></script>
+
+  <!-- =====================================================
+       ✅ VERY SMOOTH + VERY SLOW SPRING SCROLL (DESKTOP ONLY)
+       ===================================================== -->
+  <script>
+  (function () {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia && window.matchMedia("(max-width: 980px)").matches) return;
+    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) return;
+
+    const docEl = document.documentElement;
+    const maxScroll = () => Math.max(0, (docEl.scrollHeight || 0) - window.innerHeight);
+    const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+    const INPUT_SCALE = 0.60;
+    const SPRING      = 0.06;
+    const FRICTION    = 0.90;
+    const MAX_DELTA   = 120;
+
+    let target = window.scrollY || 0;
+    let pos    = target;
+    let vel    = 0;
+    let raf    = null;
+    let lastT  = performance.now();
+
+    function animate(t) {
+      const dt = Math.min(32, t - lastT);
+      lastT = t;
+
+      const max = maxScroll();
+      target = clamp(target, 0, max);
+
+      const dist = target - pos;
+
+      vel += dist * SPRING * (dt / 16.67);
+      vel *= Math.pow(FRICTION, dt / 16.67);
+      pos += vel;
+
+      if (pos < 0) { pos = 0; vel = 0; }
+      if (pos > max) { pos = max; vel = 0; }
+
+      window.scrollTo(0, pos);
+
+      if (Math.abs(vel) < 0.05 && Math.abs(dist) < 0.5) {
+        raf = null;
+        return;
+      }
+      raf = requestAnimationFrame(animate);
+    }
+
+    function kick() {
+      if (!raf) {
+        lastT = performance.now();
+        raf = requestAnimationFrame(animate);
+      }
+    }
+
+    function wheelDeltaPixels(e) {
+      let d = e.deltaY;
+      if (e.deltaMode === 1) d *= 16;
+      else if (e.deltaMode === 2) d *= 600;
+      return clamp(d, -MAX_DELTA, MAX_DELTA);
+    }
+
+    window.addEventListener("wheel", (e) => {
+      if (e.ctrlKey) return;
+
+      const el = e.target;
+      const nested = el && el.closest && el.closest("#buyPanel, .c-glitch");
+      if (nested) return;
+
+      e.preventDefault();
+
+      const d = wheelDeltaPixels(e) * INPUT_SCALE;
+      vel += d * 0.11;
+      target += d;
+
+      kick();
+    }, { passive: false });
+
+    window.addEventListener("scroll", () => {
+      if (raf) return;
+      target = window.scrollY || 0;
+      pos = target;
+      vel = 0;
+    }, { passive: true });
+  })();
+  </script>
+
+
+  <!-- =====================================================
+       ✅ DVD GUY: random popup + smooth corner-bounce
+       Click him to get rid of him. Desktop only.
+       Added only.
+       ===================================================== -->
+  <div id="dvdGuyWrap" aria-hidden="true">
+    <img id="dvdGuy" src="https://i.ibb.co/G4q7PDnK/artworks-nzfj0c-Hx-M56-U4-Pg4-ZPlyy-A-t500x500-removebg-preview.png" alt="" draggable="false" />
+  </div>
+
+  <script>
+  (function(){
+    // Desktop-only (matches your existing breakpoint)
+    if (window.matchMedia && window.matchMedia("(max-width: 980px)").matches) return;
+    // Respect reduced-motion users
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const wrap = document.getElementById("dvdGuyWrap");
+    const img  = document.getElementById("dvdGuy");
+    if (!wrap || !img) return;
+
+    const rand  = (min, max) => min + Math.random() * (max - min);
+    const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+    const sign  = (n) => (n < 0 ? -1 : 1);
+
+    let raf = null;
+    let spawned = false;
+
+    let x = 0, y = 0;       // position in px
+    let vx = 0, vy = 0;     // velocity px/sec
+    let lastT = 0;
+    let nextTimer = null;
+
+    function bounds(){
+      const w = wrap.offsetWidth  || 160;
+      const h = wrap.offsetHeight || 160;
+      return {
+        maxX: Math.max(0, window.innerWidth  - w),
+        maxY: Math.max(0, window.innerHeight - h),
+        w, h
+      };
+    }
+
+    function setPos(){
+      wrap.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    }
+
+    function scheduleNext(){
+      // Random delay before he appears again
+      const delayMs = rand(8, 22) * 1000;
+      clearTimeout(nextTimer);
+      nextTimer = setTimeout(spawn, delayMs);
+    }
+
+    function spawn(){
+      spawned = true;
+      wrap.style.display = "block";
+
+      const b = bounds();
+
+      // Start at a random spot
+      x = rand(0, b.maxX);
+      y = rand(0, b.maxY);
+
+      // Classic DVD-ish speed
+      const speed = rand(240, 340); // px/sec
+      const angle = rand(0.45, 1.15); // radians (keeps it diagonal-ish)
+
+      vx = Math.cos(angle) * speed * (Math.random() < 0.5 ? 1 : -1);
+      vy = Math.sin(angle) * speed * (Math.random() < 0.5 ? 1 : -1);
+
+      // Avoid too-flat movement
+      if (Math.abs(vx) < 120) vx = sign(vx) * 160;
+      if (Math.abs(vy) < 120) vy = sign(vy) * 160;
+
+      lastT = performance.now();
+      setPos();
+      kick();
+    }
+
+    function despawn(){
+      spawned = false;
+      wrap.style.display = "none";
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      scheduleNext();
+    }
+
+    function kick(){
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+
+    function tick(t){
+      raf = null;
+      if (!spawned) return;
+
+      const dt = Math.min(40, t - lastT) / 1000; // seconds
+      lastT = t;
+
+      const b = bounds();
+
+      x += vx * dt;
+      y += vy * dt;
+
+      // Bounce off edges
+      if (x <= 0)      { x = 0;      vx = Math.abs(vx); }
+      if (x >= b.maxX) { x = b.maxX; vx = -Math.abs(vx); }
+      if (y <= 0)      { y = 0;      vy = Math.abs(vy); }
+      if (y >= b.maxY) { y = b.maxY; vy = -Math.abs(vy); }
+
+      setPos();
+      raf = requestAnimationFrame(tick);
+    }
+
+    // Click to remove
+    img.addEventListener("click", function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      despawn();
+    });
+
+    // Keep within viewport on resize
+    window.addEventListener("resize", function(){
+      if (!spawned) return;
+      const b = bounds();
+      x = clamp(x, 0, b.maxX);
+      y = clamp(y, 0, b.maxY);
+      setPos();
+    }, { passive: true });
+
+    // First appearance after a short random delay
+    scheduleNext();
+  })();
+  </script>
+
+</body>
+</html>
